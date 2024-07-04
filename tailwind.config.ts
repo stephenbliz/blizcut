@@ -13,6 +13,18 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        "primary-gold": '#D6A354',
+        "secondary-black": {
+          "100": "#444444",
+          "200": "#222222"
+        },
+        "tertiary-blue": '#F5F5F5'
+      },
+      fontFamily: {
+        "roboto": ["Roboto", "sans-serif"],
+        "oswald": ["Oswald", "sans-serif"]
+      }
     },
   },
   plugins: [],
