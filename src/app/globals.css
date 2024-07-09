@@ -9,4 +9,13 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.hollow-text {
+  -webkit-text-stroke: 2px white;
+}
+
 

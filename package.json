@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "build:css": "tailwindcss -i src/app/globals.css -o public/style.css",
+    "build:css": "tailwindcss -i src/app/globals.css -o public/style.css --watch",
     "lint": "next lint"
   },
   "dependencies": {
@@ -14,9 +14,11 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "framer-motion": "^11.1.7",
+    "icons": "^1.0.0",
     "next": "14.2.3",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "^18.3.1",
+    "react-dom": "^18",
+    "react-icons": "^5.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",
