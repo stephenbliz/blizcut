@@ -21,7 +21,7 @@ export default function Hero(){
             <Header />
             
             <div 
-              className='text-white lg:w-[70%] leading-relaxed px-[10vw] mt-8 xl:mt-[7%]'
+              className='text-white lg:w-[70%] leading-relaxed px-[10vw] pt-[21vh] xl:pt-[30vh]'
             >
               <h1 
                 className='font-oswald text-center lg:text-left hollow-text text-5xl lg:text-7xl mb-8 lg:mb-4 font-extrabold capitalize bg-clip-text webkit-bg-clip-text text-transparent'
@@ -43,7 +43,7 @@ export default function Hero(){
               </Link>
             </div>
             <div
-                className='lg:absolute left-0 top-[22%] xl:top-[30%] -z-10 flex lg:flex-col justify-center lg:justify-between items-center w-full lg:w-[7%] lg:h-[60vh] xl:h-[40vh]'
+                className='lg:absolute left-0 top-[22%] xl:top-[30%] -z-10 flex lg:flex-col justify-center lg:justify-between items-center w-full lg:w-[7%] lg:h-[60%] xl:h-[40%]'
             >
                 <div
                     className='rotate-90 hidden lg:block text-white'
