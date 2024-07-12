@@ -24,6 +24,7 @@ export default function Header(){
     }
 
     useEffect(()=>{
+        handleScroll();
         handleWidth();
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleWidth);
@@ -49,7 +50,7 @@ export default function Header(){
         <motion.header 
             className={`${scrolY > 70 ? "text-secondary-black-200 bg-white" : 'bg-transparent text-white'} font-roboto z-10 text-2xl lg:text-[17px] fixed top-0 left-0 xl:text-2xl flex justify-between items-center py-4 px-8 lg:py-0 lg:px-20 w-full h-[12vh] lg:h-[17vh] border-b border-gray-500`}
         >
-            <div className="w-[10%] text-4xl text-primary-gold  text-center">
+            <div className="w-[10%] text-4xl text-primary-gold uppercase text-center">
                 Blizcut
             </div>
 
