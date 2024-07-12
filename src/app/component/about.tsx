@@ -8,13 +8,14 @@ import {motion} from 'framer-motion'
 export default function SectionAbout(){
     return(
         <section
-            className="pb-8 pt-[10%] px-8 lg:px-16 flex flex-wrap text-secondary-black-100"
+            className="pb-8 w-[100vw] pt-[10%] px-8 lg:px-16 flex flex-wrap text-secondary-black-100"
         >
             <motion.div
                 className='w-[100%] lg:w-[50%] relative h-fit'
                 initial={{opacity: 0, x: '-100%'}}
                 whileInView={{opacity: 1, x: 0}}
                 transition={{delay:.5, duration:2, type: 'spring', stiffness: 120}}
+                viewport={{once: true}}
             >
                 <Image 
                     src={aboutImage}
@@ -47,6 +48,7 @@ export default function SectionAbout(){
                 initial={{opacity: 0, x: '100%'}}
                 whileInView={{opacity: 1, x: 0}}
                 transition={{delay:.5, duration:2, type: 'spring', stiffness: 120}}
+                viewport={{once: true}}
             >
                 <h1
                     className='font-oswald font-bold text-3xl sm:text-4xl mb-8 mt-[12%] lg:mt-0 capitalize text-secondary-black-200'

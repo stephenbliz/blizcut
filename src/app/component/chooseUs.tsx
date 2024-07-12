@@ -23,7 +23,7 @@ export default function ChooseUs(){
 
     return(
         <section
-            className="pt-24 pb-2 px-8 lg:px-16 text-secondary-black-100"
+            className="pt-24 pb-2 w-[100vw] px-8 lg:px-16 text-secondary-black-100"
         >
             <h1
                 className="capitalize text-secondary-black-200 text-center font-bold text-3xl sm:text-5xl font-oswald mb-8"

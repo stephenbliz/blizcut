@@ -5,7 +5,7 @@ import SectionAbout from "./component/about";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="overflow-x-hidden">
      <Hero />
      <ChooseUs />
      <SectionAbout />
