@@ -21,7 +21,7 @@ export default function Hero(){
             <Header />
             
             <div 
-              className='text-white lg:w-[70%] leading-relaxed px-[10vw] pt-[21vh] xl:pt-[30vh]'
+              className='text-white lg:w-[65%] leading-relaxed px-[10vw] pt-[21vh] xl:pt-[30vh]'
             >
               <h1 
                 className='font-oswald text-center lg:text-left hollow-text text-5xl lg:text-7xl mb-8 lg:mb-4 font-extrabold capitalize bg-clip-text webkit-bg-clip-text text-transparent'
@@ -31,9 +31,11 @@ export default function Hero(){
               <p
                 className='mb-8 lg:mb-4 text-center lg:text-left'
               >
-                Lorem ipsum dolor sit amet consectetur adipisicing
-                 elit. Quisquam eos quasi inventore vero 
-                 blanditiis ut, asperiores, nam 
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                Maxime iusto aliquam id temporibus tenetur sequi obcaecati 
+                necessitatibus aliquid ipsa libero reprehenderit odio, 
+                possimus recusandae non praesentium minus accusamus, 
+                debitis sint!
               </p>
               <Link 
                 href=''

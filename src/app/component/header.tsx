@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
 import { usePathname } from "next/navigation";
-import {motion} from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 
 export default function Header(){
     const [scrolY, setScrolY] = useState(0);
@@ -60,9 +60,9 @@ export default function Header(){
             />
 
             {width < 1024 ? 
+            <AnimatePresence>
             <motion.nav 
                 className={`${toggleMenu ? 'block' : 'hidden'} lg:flex justify-between lg:w-[60%] w-[100vw] items-center h-[100vh] lg:h-20 fixed text-secondary-black-200 lg:text-inherit bg-tertiary-blue lg:bg-transparent lg:static top-0 right-0`}
-                initial={toggleMenu ? {opacity: 0, x:'100%'} : {opacity: 1, x:0}}
                 animate={toggleMenu ? {opacity: 1, x:0} : {opacity: 0, x:'100%'}}
                 transition={{duration: .5}}
             >
@@ -90,7 +90,7 @@ export default function Header(){
                     }
                 </ul>
                 
-            </motion.nav> :
+            </motion.nav></AnimatePresence> :
             <nav 
             className={`${toggleMenu ? 'block' : 'hidden'} lg:flex justify-between lg:w-[60%] w-[100vw] items-center h-[100vh] lg:h-20 fixed text-secondary-black-200 lg:text-inherit bg-tertiary-blue lg:bg-transparent lg:static top-0 right-0`}
             // initial={toggleMenu ? {opacity: 0, x:'100%'} : {opacity: 1, x:0}}
