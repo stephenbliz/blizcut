@@ -1,5 +1,9 @@
+import Breadcrumb from "../component/breadcrumb";
+
 export default function Contact(){
     return(
-        <div>Contact page</div>
+        <>
+            <Breadcrumb title="contact us" />
+        </>
     )
 }

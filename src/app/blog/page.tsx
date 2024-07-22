@@ -1,5 +1,9 @@
+import Breadcrumb from "../component/breadcrumb";
+
 export default function Blog(){
     return(
-        <div>Blog page</div>
+        <>
+            <Breadcrumb title="our blog" />
+        </>
     )
 }
