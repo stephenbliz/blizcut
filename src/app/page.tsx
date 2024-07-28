@@ -9,7 +9,7 @@ import BlogSection from "./component/blog";
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-hidden">
      <Hero />
      <ChooseUs />
      <SectionAbout />

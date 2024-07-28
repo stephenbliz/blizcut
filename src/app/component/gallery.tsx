@@ -179,8 +179,6 @@ export default function Gallery(){
       });
   }
 
-  console.log("Selected Image ID:", selectedImageId);
-
     return(
         <section
           className="relative pt-24 pb-2 w-[100vw] px-8 lg:px-16"
