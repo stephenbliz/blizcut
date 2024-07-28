@@ -75,10 +75,9 @@ export default function Header(){
                     className="lg:w-full w-fit lg:flex mx-auto lg:mx-0 justify-between lg:mt-0 mt-[20%] h-fit block items-center"
                 >
                     {
-                        navItems.map((navItem, index) => (
+                        navItems.map((navItem) => (
                             <li
                                 className="text-center py-4 lg:py-0"
-                                key={index}
                             >
                                 <Link 
                                     href={navItem.path}
