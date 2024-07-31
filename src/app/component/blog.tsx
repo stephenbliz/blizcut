@@ -7,6 +7,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import {motion} from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import HeadAndPara from './headAndPara';
 
 export default function BlogSection(){
     const blogs = [
@@ -18,18 +19,13 @@ export default function BlogSection(){
         <section
             className="text-secondary-black-100 pt-24 pb-2 w-[100vw] px-8 lg:px-16"
         >
-            <h1
-                className="capitalize text-secondary-black-200 text-center font-bold text-3xl sm:text-5xl font-oswald mb-8"
-            >
-                latest news
-            </h1>
-            <p
-                className="text-center lg:w-[70%] mx-auto mb-12"
-            >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            <HeadAndPara 
+                head='latest news'
+                para='Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                 Et tempore repudiandae quos temporibus saepe quaerat, quisquam,
-                necessitatibus soluta eaque odio assumenda impedit quasi tenetur 
-            </p>
+                necessitatibus soluta eaque odio assumenda impedit quasi tenetur'
+            />
+            
             <div
                 className="mb-12 flex flex-wrap justify-center lg:justify-between items-center"
             >

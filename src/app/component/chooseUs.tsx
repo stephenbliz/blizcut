@@ -6,6 +6,7 @@ import { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import HeadAndPara from './headAndPara';
 
 interface Appointment {
     name: string;
@@ -25,19 +26,14 @@ export default function ChooseUs(){
         <section
             className="pt-24 pb-2 w-[100vw] px-8 lg:px-16 text-secondary-black-100"
         >
-            <h1
-                className="capitalize text-secondary-black-200 text-center font-bold text-3xl sm:text-5xl font-oswald mb-8"
-            >
-                why choose us
-            </h1>
-            <p
-                className="text-center lg:w-[70%] mx-auto mb-8"
-            >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            <HeadAndPara 
+                head='why choose us'
+                para='Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                 Et tempore repudiandae quos temporibus saepe quaerat, quisquam,
                 necessitatibus soluta eaque odio assumenda impedit quasi tenetur 
-                atque deleniti eius obcaecati. Cupiditate, deserunt.
-            </p>
+                atque deleniti eius obcaecati. Cupiditate, deserunt.'
+            />
+            
             <div
                 className="flex flex-wrap justify-center lg:justify-between items-center mt-8"
             >
