@@ -8,6 +8,7 @@ import {motion} from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import HeadAndPara from './headAndPara';
+import Blogs from './blogs';
 
 export default function BlogSection(){
     const blogs = [
@@ -25,8 +26,12 @@ export default function BlogSection(){
                 Et tempore repudiandae quos temporibus saepe quaerat, quisquam,
                 necessitatibus soluta eaque odio assumenda impedit quasi tenetur'
             />
+            <Blogs 
+                blogs={blogs}
+                width='lg:w-[30%]'
+            />
             
-            <div
+            {/* <div
                 className="mb-12 flex flex-wrap justify-center lg:justify-between items-center"
             >
                 {
@@ -88,7 +93,7 @@ export default function BlogSection(){
                         </motion.div>
                     ))
                 }
-            </div>
+            </div> */}
         </section>
     )
 }

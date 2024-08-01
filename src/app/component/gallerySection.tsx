@@ -25,7 +25,7 @@ const galeries: galsProp[] = [
           {tag: ['normal haircut', 'hair pump'], id: 6, image: image4},
       ]
 
-export default function Gallery(){
+export default function GallerySection(){
     const [galleries, setGalleries] = useState<galsProp[]>(galeries);
     const [activeTag, setActiveTag] = useState<string>('all');
 
