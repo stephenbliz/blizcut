@@ -1,5 +1,6 @@
 'use client';
 import Blogs from "../component/blogs";
+import BlogSideBar from "../component/blogSideBar";
 import Breadcrumb from "../component/breadcrumb";
 import beardTrim from '../images/beardTrim.jpg';
 import hairpump from '../images/hairpuump.jpg';
@@ -20,7 +21,7 @@ export default function BlogPage(){
     ]
     return(
         <section
-            className="overflow-hidden"
+            className="overflow-hidden font-roboto"
         >
             <Breadcrumb title="our blog" />
             <section
@@ -28,7 +29,9 @@ export default function BlogPage(){
             >
                 <section
                     className="col-span-1 mb-8 lg:mb-0"
-                ></section>
+                >
+                    <BlogSideBar />
+                </section>
                 <section
                     className="col-span-2"
                 >

@@ -12,12 +12,13 @@ import trending from '../images/trendingHaircut.jpg';
 import beardcut from '../images/beardCut.jpg';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import PostSnippet from "./postSnippet";
 
 export default function Footer(){
 
     const news = [
-        {images: trending, date: '24 Aug, 2024', snippet: 'The work of Blizcut is the talk of the town.'},
-        {images: beardcut, date: '24 Aug, 2024', snippet: 'The work of Blizcut is the talk of the town.'},
+        {image: trending, date: '24 Aug, 2024', snippet: 'The work of Blizcut is the talk of the town.'},
+        {image: beardcut, date: '24 Aug, 2024', snippet: 'The work of Blizcut is the talk of the town.'},
     ];
 
     const contacts = [
@@ -99,7 +100,15 @@ export default function Footer(){
                 </div>
             </div>
 
-            <div
+            <PostSnippet 
+                posts={news}
+                heading="popular news"
+                width="lg:w-[30%]"
+                border="border-none"
+                bold = "font-normal"
+            />
+
+            {/* <div
                 className="w-[full] lg:w-[30%] mb-8 lg:mb-0"
             >
                 <h1
@@ -143,7 +152,7 @@ export default function Footer(){
                     ))
                   }
                 </div>
-            </div>
+            </div> */}
             <div
                 className="w-[full] lg:w-[30%] mb-8 lg:mb-0"
             >

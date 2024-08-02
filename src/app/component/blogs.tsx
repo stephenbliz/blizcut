@@ -24,7 +24,7 @@ export default function Blogs({blogs, width}:BlogsProp){
                 {
                     blogs.map((blog, index: number)=> (
                         <motion.div
-                            className={`relative mb-16 capitalize ${width} p-2 border-2 border-dashed border-gray-300`}
+                            className={`relative mb-16 capitalize ${width} p-2 border border-dashed border-gray-300`}
                             key={index}
                             initial={{opacity: 0, scale: 1.5}}
                             whileInView={{opacity: 1, scale: 1}}
