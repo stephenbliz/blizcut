@@ -8,6 +8,7 @@ interface offer {
     name: string
     desc: string
     image: StaticImageData
+    id: number
 }
 
 interface serviceSectionProp {
@@ -28,12 +29,12 @@ export default function ServiceSection({offers1, offers2, display, childWidth, p
                     className={`flex flex-wrap justify-between items-center w-full sm:w-[90%] ${parentWidth}`}
                 >
                     {
-                        offers1.map((offer1, index)=>(
+                        offers1.map((offer1)=>(
                             <motion.div
-                                key={index}
+                                key={offer1.id}
                                 initial={{opacity: 0, scale: 0.5}}
                                 whileInView={{opacity: 1, scale: 1}}
-                                transition={{delay: .1, duration: 2, type: 'spring', stiffness: 120}}
+                                transition={{duration: 2, type: 'spring', stiffness: 120}}
                                 viewport={{once: true}}
                                 className={`w-full sm:w-[90%] ${childWidth}`}
                             >
@@ -46,7 +47,7 @@ export default function ServiceSection({offers1, offers2, display, childWidth, p
                                         className='w-full'
                                     />
                                     <Link
-                                        href=''
+                                        href={`/service/${offer1.id}`}
                                         className='absolute right-[5%] bottom-[-8%] w-[40%] capitalize inline-block py-[4%] text-center text-white bg-primary-gold hover:bg-tertiary-blue hover:text-primary-gold hover:border border-dashed border-primary-gold'
                                     >
                                         Details
@@ -72,7 +73,7 @@ export default function ServiceSection({offers1, offers2, display, childWidth, p
                     className={`w-[35%] absolute top-[33%] left-[33%] hidden lg:${display}`}
                     initial={{opacity: 0, scale: 0.5}}
                     whileInView={{opacity: 1, scale: 1}}
-                    transition={{delay: .5, duration: 2, type: 'spring', stiffness: 120}}
+                    transition={{duration: 2, type: 'spring', stiffness: 120}}
                     viewport={{once: true}}
                 >
                     <Image 
@@ -85,12 +86,12 @@ export default function ServiceSection({offers1, offers2, display, childWidth, p
                     className={`flex flex-wrap justify-between items-center w-full sm:w-[90%] ${parentWidth}`}
                 >
                     {
-                        offers2.map((offer2, index)=>(
+                        offers2.map((offer2)=>(
                             <motion.div
-                                key={index}
+                                key={offer2.id}
                                 initial={{opacity: 0, scale: 0.5}}
                                 whileInView={{opacity: 1, scale: 1}}
-                                transition={{delay: .5, duration: 2, type: 'spring', stiffness: 120}}
+                                transition={{duration: 2, type: 'spring', stiffness: 120}}
                                 viewport={{once: true}}
                                 className={`w-full sm:w-[90%] ${childWidth}`}
                             >
@@ -103,7 +104,7 @@ export default function ServiceSection({offers1, offers2, display, childWidth, p
                                         className='w-full'
                                     />
                                     <Link
-                                        href=''
+                                        href={`/service/${offer2.id}`}
                                         className='absolute right-[5%] bottom-[-8%] w-[40%] capitalize inline-block py-[4%] text-center text-white bg-primary-gold hover:bg-tertiary-blue hover:text-primary-gold hover:border border-dashed border-primary-gold'
                                     >
                                         Details

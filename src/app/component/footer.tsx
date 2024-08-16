@@ -108,51 +108,6 @@ export default function Footer(){
                 bold = "font-normal"
             />
 
-            {/* <div
-                className="w-[full] lg:w-[30%] mb-8 lg:mb-0"
-            >
-                <h1
-                    className="text-xl lg:text-2xl font-oswald font-bold text-secondary-black-200 capitalize mb-8"
-                >
-                    popular news
-                </h1>
-                <div
-                    className="flex flex-col"
-                >
-                  {
-                    news.map((item, index)=>(
-                        <div
-                            key={index}
-                            className="flex w-full justify-between items-start first:border-b border-dashed border-gray-300 first:pb-8  last:pt-8"
-                        >
-                            <div
-                                className="w-[25%]"
-                            >
-                                <Image 
-                                    src={item.images}
-                                    alt="News image"
-                                    className="w-full"
-                                />
-                            </div>
-                            <div
-                                className="w-[70%]"
-                            >
-                                <p
-                                    className="mb-8"
-                                >
-                                    {item.snippet}
-                                </p>
-                                <p
-                                    className="text-primary-gold text-sm"
-                                >
-                                    {item.date}
-                                </p>
-                            </div>
-                        </div>
-                    ))
-                  }
-                </div>
-            </div> */}
             <div
                 className="w-[full] lg:w-[30%] mb-8 lg:mb-0"
             >

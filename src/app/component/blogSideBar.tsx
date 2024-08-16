@@ -164,7 +164,7 @@ export default function BlogSideBar(){
                     ads
                 </div>
                 <div
-                    className="relative bg-secondary-black-100 "
+                    className="relative bg-secondary-black-100 cursor-pointer"
                 >
                     <Image 
                         src={heroImage}
