@@ -72,7 +72,7 @@ export default function ServiceDetail({params}: serviceDetailProp){
         <section
             className="overflow-hidden text-secondary-black-100"
         >
-            <Breadcrumb title="service detail" />
+            <Breadcrumb title="service details" />
             <section
                 className="pt-24 pb-2 w-[100vw] px-8 lg:px-16"
             >

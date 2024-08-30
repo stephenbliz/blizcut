@@ -9,6 +9,7 @@ interface blog {
     tag: string
     date: string
     title: string
+    id: number
 }
 
 interface BlogsProp{
@@ -72,7 +73,7 @@ export default function Blogs({blogs, width}:BlogsProp){
                                 </h1>
                             </div>
                             <Link
-                                href=''
+                                href={`/blog/${blog.id}`}
                                 className='absolute transition duration-[.5s] right-[5%] bottom-[-8%] w-[40%] capitalize inline-block py-[4%] text-center text-white bg-primary-gold hover:bg-tertiary-blue hover:text-primary-gold hover:border border-dashed border-primary-gold'
                             >
                                 Details
