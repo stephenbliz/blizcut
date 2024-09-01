@@ -12,9 +12,9 @@ import Blogs from './blogs';
 
 export default function BlogSection(){
     const blogs = [
-        {image: beardTrim, tag: 'beard trim', date: '01 Aug, 2024', title: "Let's see trending beard trim in 2024 only for men"},
-        {image: hairpump, tag: 'hair pump', date: '01 Aug, 2024', title: "Let's see trending hair pump in 2024 only for men"},
-        {image: normalHaircut, tag: 'haircut', date: '01 Aug, 2024', title: "Let's see trending haircut in 2024 only for men"},
+        {image: beardTrim, tag: 'beard trim', date: '01 Aug, 2024', title: "Let's see trending beard trim in 2024 only for men", id:1},
+        {image: hairpump, tag: 'hair pump', date: '01 Aug, 2024', title: "Let's see trending hair pump in 2024 only for men", id:2},
+        {image: normalHaircut, tag: 'haircut', date: '01 Aug, 2024', title: "Let's see trending haircut in 2024 only for men", id:3},
     ]
     return (
         <section
