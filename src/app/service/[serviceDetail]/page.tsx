@@ -9,65 +9,72 @@ import hairpuump from '../../images/hairPump.jpg';
 import Image, { StaticImageData } from "next/image";
 import HeadAndPara from "@/app/component/headAndPara";
 import ServiceSection from "@/app/component/service";
+import { serviceDetailProp, service } from "@/app/utils/type";
+import { getServices } from "@/app/utils/fetch";
 
-interface serviceDetailProp{
-    params : {
-        serviceDetail: string
-    }
-}
 
-interface offer {
-    name: string
-    desc: string
-    image: StaticImageData
-    id: number
-}
+
+// interface offer {
+//     name: string
+//     desc: string
+//     image: StaticImageData
+//     id: number
+// }
 
 export default function ServiceDetail({params}: serviceDetailProp){
-    const [serv, setServ] = useState<offer[] | null>(null);
+    const [services, setServices] = useState<service[] | null>(null);
+    const [detail, setDetail] = useState<service | null>(null)
+    const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const offers1 = [
-        {name: 'normal haircut', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: normalHaircut, id:1},
-        {name: 'hair pump', desc: 'Get a nice hairdry without our latest and efficient hair pump', image: hairpuump, id:2},
-        {name: 'normal haircut', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: normalHaircut, id:3}
-    ];
+    // const offers1 = [
+    //     {name: 'normal haircut', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: normalHaircut, id:1},
+    //     {name: 'hair pump', desc: 'Get a nice hairdry without our latest and efficient hair pump', image: hairpuump, id:2},
+    //     {name: 'normal haircut', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: normalHaircut, id:3}
+    // ];
 
-    const offers2 = [
-        {name: 'hair clean', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: hairWash, id:4},
-        {name: 'new beard cut', desc: 'Get a nice hairdry without our latest and efficient hair pump', image: beardcut, id:5},
-        {name: 'normal haircut', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: normalHaircut, id:6}
-    ];
+    // const offers2 = [
+    //     {name: 'hair clean', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: hairWash, id:4},
+    //     {name: 'new beard cut', desc: 'Get a nice hairdry without our latest and efficient hair pump', image: beardcut, id:5},
+    //     {name: 'normal haircut', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: normalHaircut, id:6}
+    // ];
 
     useEffect(()=>{
-        const getservice = ()=>{
-            const combinedOffer = [...offers1, ...offers2];
+        const fetchService = async()=>{
+        //     const combinedOffer = [...offers1, ...offers2];
 
-           const matchingOffer = combinedOffer.find((offer)=>{
-                return offer.id.toString() === params.serviceDetail;
-            });
+        //    const matchingOffer = combinedOffer.find((offer)=>{
+        //         return offer.id.toString() === params.serviceDetail;
+        //     });
             
-            if(matchingOffer){
-                setServ([matchingOffer]);
+        //     if(matchingOffer){
+        //         setServ([matchingOffer]);
+        //     }
+            try{
+                const result = await getServices();
+                setServices(result);
+                const filteredResult = result?.find((r)=>{
+                    return r.slug === params.serviceDetail;
+                })
+                setDetail(filteredResult!);
             }
-            
+            catch(error){
+                console.log(error)
+                setError('Could not fetch the resources');
+            }
+            finally{
+                setIsLoading(false);
+            }
         }
-        getservice();
+        fetchService();
     }, [])
-    // useEffect(() => {
-    //     const getservice = () => {
-    //         const combinedOffers = [...offers1, ...offers2];
-    //         const matchingOffer = combinedOffers.find(
-    //             (offer) => offer.id.toString() === params.serviceDetail
-    //         );
-    //         if (matchingOffer) {
-    //             setServ([matchingOffer]); // Wrapping in an array to match your existing map logic
-    //         }
-    //     };
-    //     getservice();
-    // }, [params.serviceDetail]);
-    
 
-    console.log(serv)
+    if(isLoading){
+        return(
+            <div></div>
+        )
+    }
+    
     return(
         <section
             className="overflow-hidden text-secondary-black-100"
@@ -76,18 +83,15 @@ export default function ServiceDetail({params}: serviceDetailProp){
             <section
                 className="pt-24 pb-2 w-[100vw] px-8 lg:px-16"
             >
-                {
-                   serv?.map((ser, index)=>(
                     <div
-                        key={index}
                         className="lg:w-[80%] mx-auto mb-[10%]"
                     >
                         <div
                             className="w-full"
                         >
-                            <Image 
-                                src={ser.image}
-                                alt="Service Image"
+                            <img 
+                                src={detail?.featuredImage.url!}
+                                alt={detail?.featuredImage.alt!}
                                 className="w-full"
                             />
                         </div>
@@ -100,7 +104,7 @@ export default function ServiceDetail({params}: serviceDetailProp){
                                 <h2
                                     className="font-bold font-oswald text-secondary-black-200"
                                 >
-                                    Price: $29
+                                    {detail?.price}
                                 </h2>
                                 <h2
                                     className="font-bold font-oswald mt-4 text-secondary-black-200"
@@ -123,37 +127,29 @@ export default function ServiceDetail({params}: serviceDetailProp){
                                 <h1
                                     className="text-2xl capitalize text-secondary-black-200 font-oswald font-bold"
                                 >
-                                    {ser.name}
+                                    {detail?.title}
                                 </h1>
                                 <p
                                     className="mt-4"
                                 >
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                                    Itaque, tempore, repudiandae distinctio placeat dignissimos
-                                     dicta atque. Nisi, tenetur. Laudantium, praesentium eum 
-                                     doloribus ipsam alias! Minus, enim, quaerat? Et consectetur 
-                                     voluptate, commodi nihil minus assumenda facere ullam sequi, 
-                                     eius, culpa id aliquid corporis, veniam fugit dignissimos 
-                                     perspiciatis impedit perferendis error ut!
-
-
+                                    {detail?.description}
                                 </p>
                             </div>
                         </div>
                     </div>
-                   ))
-                }
+                
+                
                 <HeadAndPara 
                     head="other services"
                     para="Deleniti dicta aspernatur expedita. Hic, harum. Repellat at, excepturi placeat atque hic, beatae alias saepe recusandae numquam totam laborum. Facilis iure rem corrupti laborum"
                 />
-                <ServiceSection
-                    offers1={offers1}
-                    offers2={offers2}
+                {!isLoading && <ServiceSection
+                    services={services!}
+                    gap="gap-[5%]"
                     display="hidden"
                     parentWidth="lg:w-full"
-                    childWidth="lg:w-[25%]" 
-                />
+                    childWidth="lg:w-[30%]" 
+                />}
             </section>
         </section>
     )

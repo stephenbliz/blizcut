@@ -4,14 +4,15 @@ import Team from "../component/team";
 import Testimonial from "../component/testimonial";
 
 export default function About(){
+
     return(
-        <section
-            className="overflow-hidden"
-        >
-            <Breadcrumb title='about us' />
-            <SectionAbout />
-            <Testimonial />
-            <Team />
-        </section>
+            <section
+                className="overflow-hidden"
+            >
+                <Breadcrumb title='about us' />
+                <SectionAbout />
+                <Testimonial />
+                <Team />
+            </section>
     )
 }

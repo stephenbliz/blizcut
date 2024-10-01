@@ -1,25 +1,51 @@
 'use client';
-import beardcut from '../images/beardCut.jpg';
-import normalHaircut from '../images/normalHaircut.jpg';
-import wallpaper from '../images/wallpaper.png';
-import hairWash from '../images/hairWash.jpg';
-import hairpuump from '../images/hairPump.jpg';
-import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import HeadAndPara from './headAndPara';
 import ServiceSection from './service';
+import { getSixServices } from '../utils/fetch';
+import {useState, useEffect} from 'react';
+import { service } from '../utils/type';
 
 export default function Offer(){
-    const offers1 = [
-        {name: 'normal haircut', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: normalHaircut, id:1},
-        {name: 'hair pump', desc: 'Get a nice hairdry without our latest and efficient hair pump', image: hairpuump, id:2}
-    ];
 
-    const offers2 = [
-        {name: 'hair clean', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: hairWash, id:3},
-        {name: 'new beard cut', desc: 'Get a nice hairdry without our latest and efficient hair pump', image: beardcut, id:4}
-    ];
+    const [services, setServices] = useState<null | service[]>(null)
+    const [error, setError] = useState<string | null>(null)
+    const [isLoading, setIsLoading] = useState<boolean>(true)
+
+    useEffect(()=>{
+        const fetch = async ()=>{
+            try{
+                const result = await getSixServices();
+                setServices(result);
+            }
+            catch(error){
+                console.error(error);
+                setError('Unable to fetch');
+            }
+            finally{
+                setIsLoading(false);
+            }
+            
+        }
+        fetch();
+    }, [])
+    console.log(services);
+
+    if(isLoading){
+        return(
+            <div
+                className="text-4xl font-bold text-center"
+            >Loading...</div>
+        )
+    }
+
+    if(error){
+        return(
+            <div
+                className="text-4xl font-bold text-center"
+            >Unable to fetch resource</div>
+        )
+    }
 
     return(
         <section
@@ -33,11 +59,11 @@ export default function Offer(){
             />
             
             <ServiceSection 
-                offers1={offers1}
-                offers2={offers2}
+                services={services!}
+                gap='gap-[40%]'
                 display='block'
-                parentWidth='lg:w-[25%]'
-                childWidth='lg:w-full'
+                parentWidth='lg:w-[100%]'
+                childWidth='lg:w-[30%]'
             />
         </section>
     )
