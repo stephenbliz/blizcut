@@ -13,43 +13,15 @@ import { serviceDetailProp, service } from "@/app/utils/type";
 import { getServices } from "@/app/utils/fetch";
 
 
-
-// interface offer {
-//     name: string
-//     desc: string
-//     image: StaticImageData
-//     id: number
-// }
-
 export default function ServiceDetail({params}: serviceDetailProp){
     const [services, setServices] = useState<service[] | null>(null);
     const [detail, setDetail] = useState<service | null>(null)
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    // const offers1 = [
-    //     {name: 'normal haircut', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: normalHaircut, id:1},
-    //     {name: 'hair pump', desc: 'Get a nice hairdry without our latest and efficient hair pump', image: hairpuump, id:2},
-    //     {name: 'normal haircut', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: normalHaircut, id:3}
-    // ];
-
-    // const offers2 = [
-    //     {name: 'hair clean', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: hairWash, id:4},
-    //     {name: 'new beard cut', desc: 'Get a nice hairdry without our latest and efficient hair pump', image: beardcut, id:5},
-    //     {name: 'normal haircut', desc: 'We offer variety of haircuts, come and get the best look at our barbershop', image: normalHaircut, id:6}
-    // ];
 
     useEffect(()=>{
         const fetchService = async()=>{
-        //     const combinedOffer = [...offers1, ...offers2];
-
-        //    const matchingOffer = combinedOffer.find((offer)=>{
-        //         return offer.id.toString() === params.serviceDetail;
-        //     });
-            
-        //     if(matchingOffer){
-        //         setServ([matchingOffer]);
-        //     }
             try{
                 const result = await getServices();
                 setServices(result);
@@ -71,7 +43,17 @@ export default function ServiceDetail({params}: serviceDetailProp){
 
     if(isLoading){
         return(
-            <div></div>
+            <div
+                className="text-4xl text-center font-bold"
+            >Loading...</div>
+        )
+    }
+
+    if(error){
+        return(
+            <div
+                className="text-4xl text-center font-bold"
+            >{error}</div>
         )
     }
     

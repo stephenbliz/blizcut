@@ -3,7 +3,6 @@ import { service, serviceResponse } from "./type";
 
 
 const graphqlApi = process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
-// const graphqlApi = 'https://eu-west-2.cdn.hygraph.com/content/cm0z03j6603tv07wav1u0utv8/master';
 
 export const getServices = async ():Promise<service[] | null> => {
 
