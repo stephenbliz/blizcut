@@ -29,23 +29,6 @@ export default function Services(){
         }
         fetch();
     }, [])
-    console.log(services);
-
-    if(isLoading){
-        return(
-            <div
-                className="text-4xl font-bold text-center"
-            >Loading...</div>
-        )
-    }
-
-    if(error){
-        return(
-            <div
-                className="text-4xl font-bold text-center"
-            >Unable to fetch resource</div>
-        )
-    }
 
    return(
     <section
@@ -55,6 +38,22 @@ export default function Services(){
         <section
             className="pt-24 pb-2 w-[100vw] px-8 lg:px-16"
         >
+            {
+                isLoading && 
+                <div
+                    className="text-4xl font-bold text-center mt-16"
+                >
+                    Loading...
+                </div>
+            }
+            {
+                error && 
+                <div
+                    className="text-4xl font-bold text-center mt-16"
+                >
+                    {error}
+                </div>
+            }
             <ServiceSection 
                 services={services!}
                 gap="gap-[5%]"

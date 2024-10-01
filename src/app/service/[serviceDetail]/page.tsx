@@ -41,27 +41,27 @@ export default function ServiceDetail({params}: serviceDetailProp){
         fetchService();
     }, [])
 
-    if(isLoading){
-        return(
-            <div
-                className="text-4xl text-center font-bold"
-            >Loading...</div>
-        )
-    }
-
-    if(error){
-        return(
-            <div
-                className="text-4xl text-center font-bold"
-            >{error}</div>
-        )
-    }
-    
     return(
         <section
             className="overflow-hidden text-secondary-black-100"
         >
             <Breadcrumb title="service details" />
+            {
+                isLoading && 
+                <div
+                    className="text-4xl font-bold text-center mt-16"
+                >
+                    Loading...
+                </div>
+            }
+            {
+                error && 
+                <div
+                    className="text-4xl font-bold text-center mt-16"
+                >
+                    {error}
+                </div>
+            }
             <section
                 className="pt-24 pb-2 w-[100vw] px-8 lg:px-16"
             >
