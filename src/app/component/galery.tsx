@@ -1,8 +1,7 @@
 'use client';
-import {motion, Variants, AnimatePresence, animate} from 'framer-motion';
-import { StaticImageData } from 'next/image';
+import {motion, Variants, AnimatePresence} from 'framer-motion';
+import { galeryProp } from '../utils/type';
 import { useState } from 'react';
-import Image from 'next/image';
 import { FaSearch } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { FaArrowRight } from "react-icons/fa";
@@ -86,41 +85,26 @@ const imageVariant:Variants = {
     }
 }
 
-interface galsProp {
-    tag: string[]
-    image: StaticImageData
-    id: number
-}
-interface tagsProp {
-    name: string
-    link: ()=> void
-}
-interface galeryProp {
-    tags: tagsProp[]
-    galleries: galsProp[]
-    activeTag: string
-}
-
-export default function Galery({tags, galleries, activeTag}: galeryProp){
+export default function Galery({categories, galleries, activeTag}: galeryProp){
     const [openModal, setOpenModal] = useState(false);
-    const [selectedImageId, setSelectedImageId] = useState<null | number>(null)
+    const [selectedImageIndex, setSelectedImageIndex] = useState<null | number>(null)
 
-      const handleImageClick = (id:number)=>{
+      const handleImageClick = (index:number)=>{
         setOpenModal(true);
-        setSelectedImageId(id)
+        setSelectedImageIndex(index);
       }
   
       const handlePrevClick = ()=> {
-        setSelectedImageId(prev => {
-            if (prev === null) return galleries.length - 1;
-            return prev === 1 ? galleries.length : prev - 1;
+        setSelectedImageIndex(prev => {
+            if (prev === null) return 0;
+            return (prev === 0) ? galleries.length - 1 : prev - 1;
         });
     }
   
     const handleNextClick = ()=> {
-        setSelectedImageId(prev => {
+        setSelectedImageIndex(prev => {
             if (prev === null) return 0;
-            return prev === galleries.length ? 1 : prev + 1;
+            return (prev === galleries.length - 1) ? 0 : prev + 1;
         });
     }
 
@@ -130,25 +114,25 @@ export default function Galery({tags, galleries, activeTag}: galeryProp){
                 className="lg:w-[70%] mb-16 mx-auto flex flex-wrap justify-center gap-4 items-center"
             >
                 {
-                    tags.map((tag, index) => (
+                    categories?.map((category) => (
                         <li
-                            key={index}
+                            key={category.id}
                         >
                             <button
-                                onClick={tag.link}
-                                className={`${activeTag === tag.name ? 'bg-primary-gold text-white' : 'text-secondary-black-100 bg-none'} block px-6 py-2  border rounded-full border-dashed border-primary-gold capitalize text-secondary-black-100 hover:bg-primary-gold hover:text-white`}
+                                onClick={category.link}
+                                className={`${activeTag === category.name ? 'bg-primary-gold text-white' : 'text-secondary-black-100 bg-none'} block px-6 py-2  border rounded-full border-dashed border-primary-gold capitalize text-secondary-black-100 hover:bg-primary-gold hover:text-white`}
                             >
-                                {tag.name}
+                                {category.name}
                             </button>
                         </li>
                     ))
                 }
             </ul>
             <div
-                className="flex flex-wrap justify-center lg:justify-between items-center"
+                className="flex flex-wrap justify-center lg:gap-[5%] items-center"
             >
                {
-                galleries.map((gallery)=>(
+                galleries.map((gallery, index)=>(
                     <AnimatePresence key={gallery.id}>
                         <motion.div
                             className="relative w-full mb-8 sm:w-[90%] lg:w-[30%] "
@@ -156,11 +140,11 @@ export default function Galery({tags, galleries, activeTag}: galeryProp){
                             initial='initial'
                             whileHover='animate'
                             exit='initial'
-                            onClick={()=> handleImageClick(gallery.id)}
+                            onClick={()=> handleImageClick(index)}
                         >
-                            <Image 
-                                src={gallery.image}
-                                alt="hair photos"
+                            <img 
+                                src={gallery.image.url}
+                                alt={gallery.image.alt}
                                 
                             />
                             <motion.div
@@ -173,7 +157,7 @@ export default function Galery({tags, galleries, activeTag}: galeryProp){
                                 >
                                     <FaSearch 
                                         className="text-white text-4xl sm:text-6xl lg:text-4xl text-center "
-                                        onClick={()=> handleImageClick(gallery.id)}
+                                        onClick={()=> handleImageClick(index)}
                                     />
                                 </motion.div>
                             
@@ -207,16 +191,16 @@ export default function Galery({tags, galleries, activeTag}: galeryProp){
                   <AnimatePresence mode="wait">
                   <motion.div
                     className="h-fit lg:h-[70%] aspect-auto "
-                    key={selectedImageId}
+                    key={selectedImageIndex}
                     variants={imageVariant}
                     initial='initial'
                     animate='animate'
                     exit='exit'
                   >
-                      <Image 
-                        src={galleries.find(g => g.id === selectedImageId)?.image || ''}
-                          alt="photo galleries"
-                          className="mb-8 w-full border-4 h-full border-white"
+                      <img 
+                        src={galleries[selectedImageIndex!]?.image.url || ''}
+                        alt={galleries[selectedImageIndex!]?.image.alt || ''}
+                        className="mb-8 w-full border-4 h-full border-white"
                       />
                       <p
                           className="text-center text-white mb-4"

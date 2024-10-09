@@ -10,7 +10,7 @@ import Image, { StaticImageData } from "next/image";
 import HeadAndPara from "@/app/component/headAndPara";
 import ServiceSection from "@/app/component/service";
 import { serviceDetailProp, service } from "@/app/utils/type";
-import { getServices } from "@/app/utils/fetch";
+import { getServiceDetail, getServices } from "@/app/utils/fetch";
 
 
 export default function ServiceDetail({params}: serviceDetailProp){
@@ -24,11 +24,12 @@ export default function ServiceDetail({params}: serviceDetailProp){
         const fetchService = async()=>{
             try{
                 const result = await getServices();
+                const result2 = await getServiceDetail(params.serviceDetail);
                 setServices(result);
-                const filteredResult = result?.find((r)=>{
-                    return r.slug === params.serviceDetail;
-                })
-                setDetail(filteredResult!);
+                // const filteredResult = result?.find((r)=>{
+                //     return r.slug === params.serviceDetail;
+                // })
+                setDetail(result2);
             }
             catch(error){
                 console.log(error)
@@ -40,6 +41,7 @@ export default function ServiceDetail({params}: serviceDetailProp){
         }
         fetchService();
     }, [])
+    console.log(detail)
 
     return(
         <section
