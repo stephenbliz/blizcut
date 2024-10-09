@@ -95,9 +95,9 @@ export default function Gallery(){
                 </div>
               }
 
-              {!loading && !error &&
+              {galleries &&
                 <Galery 
-                    galleries={galleries!}
+                    galleries={galleries}
                     categories={categories}
                     activeTag={activeTag}
                 />

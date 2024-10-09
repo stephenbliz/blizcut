@@ -1,5 +1,4 @@
 'use client';
-import { motion } from 'framer-motion';
 import HeadAndPara from './headAndPara';
 import ServiceSection from './service';
 import { getSixServices } from '../utils/fetch';
@@ -29,23 +28,6 @@ export default function Offer(){
         }
         fetch();
     }, [])
-    console.log(services);
-
-    if(isLoading){
-        return(
-            <div
-                className="text-4xl font-bold text-center"
-            >Loading...</div>
-        )
-    }
-
-    if(error){
-        return(
-            <div
-                className="text-4xl font-bold text-center"
-            >Unable to fetch resource</div>
-        )
-    }
 
     return(
         <section
@@ -57,14 +39,31 @@ export default function Offer(){
                 Et tempore repudiandae quos temporibus saepe quaerat, quisquam,
                 necessitatibus soluta eaque odio assumenda impedit quasi tenetur'
             />
+            {isLoading && 
+                <div
+                    className="text-4xl font-bold text-center mt-8"
+                >
+                    Loading...
+                </div>
+            }
+
+            {error && 
+                <div
+                    className="text-4xl font-bold text-center mt-8"
+                >
+                    {error}
+                </div>
+            }
             
-            <ServiceSection 
-                services={services!}
-                gap='gap-[40%]'
-                display='block'
-                parentWidth='lg:w-[100%]'
-                childWidth='lg:w-[30%]'
-            />
+            {!isLoading && !error && 
+                <ServiceSection 
+                    services={services!}
+                    gap='gap-[40%]'
+                    display='block'
+                    parentWidth='lg:w-[100%]'
+                    childWidth='lg:w-[30%]'
+                />
+            }
         </section>
     )
 }

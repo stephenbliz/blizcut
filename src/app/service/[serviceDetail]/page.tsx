@@ -2,11 +2,6 @@
 import Breadcrumb from "@/app/component/breadcrumb";
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import beardcut from '../../images/beardCut.jpg';
-import normalHaircut from '../../images/normalHaircut.jpg';
-import hairWash from '../../images/hairWash.jpg';
-import hairpuump from '../../images/hairPump.jpg';
-import Image, { StaticImageData } from "next/image";
 import HeadAndPara from "@/app/component/headAndPara";
 import ServiceSection from "@/app/component/service";
 import { serviceDetailProp, service } from "@/app/utils/type";
@@ -26,9 +21,6 @@ export default function ServiceDetail({params}: serviceDetailProp){
                 const result = await getServices();
                 const result2 = await getServiceDetail(params.serviceDetail);
                 setServices(result);
-                // const filteredResult = result?.find((r)=>{
-                //     return r.slug === params.serviceDetail;
-                // })
                 setDetail(result2);
             }
             catch(error){
@@ -64,7 +56,7 @@ export default function ServiceDetail({params}: serviceDetailProp){
                     {error}
                 </div>
             }
-            <section
+            {detail &&<section
                 className="pt-24 pb-2 w-[100vw] px-8 lg:px-16"
             >
                     <div
@@ -127,14 +119,16 @@ export default function ServiceDetail({params}: serviceDetailProp){
                     head="other services"
                     para="Deleniti dicta aspernatur expedita. Hic, harum. Repellat at, excepturi placeat atque hic, beatae alias saepe recusandae numquam totam laborum. Facilis iure rem corrupti laborum"
                 />
-                {!isLoading && <ServiceSection
-                    services={services!}
-                    gap="gap-[5%]"
-                    display="hidden"
-                    parentWidth="lg:w-full"
-                    childWidth="lg:w-[30%]" 
-                />}
-            </section>
+                {services && 
+                    <ServiceSection
+                        services={services!}
+                        gap="gap-[5%]"
+                        display="hidden"
+                        parentWidth="lg:w-full"
+                        childWidth="lg:w-[30%]" 
+                    />
+                }
+            </section>}
         </section>
     )
 }

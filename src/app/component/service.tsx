@@ -1,6 +1,6 @@
 'use client';
 import wallpaper from '../images/wallpaper.png';
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import {motion} from 'framer-motion';
 import Link from "next/link";
 import { serviceSectionProp } from '../utils/type';

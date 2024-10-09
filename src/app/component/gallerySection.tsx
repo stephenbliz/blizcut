@@ -1,55 +1,75 @@
 'use client';
-import { StaticImageData } from "next/image";
-import { useState } from "react";
-import image1 from '../images/image1.jpg';
-import image2 from '../images/image2.jpg';
-import image3 from '../images/image3.jpg';
-import image4 from '../images/image4.jpg';
-import image5 from '../images/image5.jpg';
-import image8 from '../images/image8.jpg';
+import { useState, useEffect } from "react";
+import { gallery, categories } from "../utils/type";
+import { getAllGallery, getSomeGallery } from "../utils/fetch";
 import HeadAndPara from "./headAndPara";
 import Galery from "./galery";
 
-    interface galsProp {
-        tag: string[]
-        image: StaticImageData
-        id: number
-    }
-
-const galeries: galsProp[] = [
-          {tag: ['normal haircut', 'hair clean'], id: 1, image: image1},
-          {tag: ['hair clean', 'hair pump'], id: 2, image: image2},
-          {tag: ['normal haircut', 'hair pump'], id: 3, image: image3},
-          {tag: ['normal haircut', 'hair clean',], id: 4, image: image5},
-          {tag: ['normal haircut', 'hair pump'], id: 5, image: image8},
-          {tag: ['normal haircut', 'hair pump'], id: 6, image: image4},
-      ]
 
 export default function GallerySection(){
-    const [galleries, setGalleries] = useState<galsProp[]>(galeries);
-    const [activeTag, setActiveTag] = useState<string>('all');
+  const [galleries, setGalleries] = useState<gallery[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [activeTag, setActiveTag] = useState<string>('all');
 
-    const filteredGalleries = (tag: string) => {
-      setActiveTag(tag);
-
-      if(tag === 'all'){
-        setGalleries(galeries)
-      }else{
-        const filtered = () => {
-          return galeries.filter((galery) => {
-            return galery.tag.includes(tag)
-          })
-        }
-        setGalleries(filtered)
+  useEffect(()=>{
+    const fetchAllGallery = async () => {
+      try{
+        const result = await getAllGallery();
+        setGalleries(result);
+      }
+      catch(error){
+        console.log(error)
+        setError('Failed to fetch resource');
+      }
+      finally{
+        setLoading(false);
       }
     }
+    fetchAllGallery();
+  }, [])
 
-    const tags = [
-        {name: 'all', link: () => filteredGalleries('all')},
-        {name: 'normal haircut', link: () =>  filteredGalleries('normal haircut')},
-        {name: 'hair pump', link: () =>  filteredGalleries('hair pump')},
-        {name: 'hair clean', link: () =>  filteredGalleries('hair clean')},
-    ]
+  const fetchAllGallery = async () => {
+    try{
+      const result = await getAllGallery();
+      setGalleries(result)
+      setActiveTag('all')
+    }
+    catch(error){
+      console.log(error)
+      setError('Failed to fetch resource');
+    }
+    finally{
+      setLoading(false);
+    }
+  }
+
+  const fetchSomeGallery = async (category: string) => {
+    try{
+      if(category){
+        setActiveTag(category);
+      }
+      const result = await getSomeGallery(category);
+      setGalleries(result);
+    }
+    catch(error){
+      console.log(error)
+      setError('Failed to fetch resource');
+    }
+    finally{
+      setLoading(false);
+    }
+  }
+
+  const categories: categories[] = [
+    {name: 'all', link: () => fetchAllGallery(), id:1},
+    {name: 'haircut', link: () =>  fetchSomeGallery('haircut'), id:2},
+    {name: 'dreadlock', link: () =>  fetchSomeGallery('dreadlock'), id:3},
+    {name: 'hair coloring', link: () =>  fetchSomeGallery('hair coloring'), id:4},
+    {name: 'hair wash', link: () =>  fetchSomeGallery('hair wash'), id:5},
+    {name: 'beard trim', link: () =>  fetchSomeGallery('beard trim'), id:6},
+    {name: 'hair plating', link: () =>  fetchSomeGallery('hair plating'), id:7},
+]
 
     return(
         <section
@@ -61,12 +81,27 @@ export default function GallerySection(){
                 Et tempore repudiandae quos temporibus saepe quaerat, quisquam,
                 necessitatibus soluta eaque odio assumenda impedit quasi tenetur"
             />
-
-            <Galery 
-                tags={tags}
-                galleries={galleries}
-                activeTag={activeTag}
-            />
+            { loading &&
+                <div
+                  className="text-4xl font-bold text-center mt-8"
+                >
+                  Loading...
+                </div>
+            }
+            { error &&
+                <div
+                  className="text-4xl font-bold text-center mt-8"
+                >
+                  {error}
+                </div>
+            }
+            {galleries &&
+                <Galery 
+                    galleries={galleries}
+                    categories={categories}
+                    activeTag={activeTag}
+                />
+            }
         </section>
     )
 }

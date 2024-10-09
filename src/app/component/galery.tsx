@@ -203,9 +203,9 @@ export default function Galery({categories, galleries, activeTag}: galeryProp){
                         className="mb-8 w-full border-4 h-full border-white"
                       />
                       <p
-                          className="text-center text-white mb-4"
+                          className="text-center text-white mb-4 capitalize"
                       >
-                          Hair cut photo from blizcut
+                          {galleries[selectedImageIndex!].title}
                       </p>
                   </motion.div>
                   </AnimatePresence>
